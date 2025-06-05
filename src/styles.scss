@@ -42,13 +42,6 @@
   --transition-slow: 0.5s ease;
 }
 
-// Reset y base
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -81,4 +74,31 @@ h1, h2, h3, h4, h5, h6 {
   @media (max-width: 640px) {
     padding: 0 1rem;
   }
+}
+
+// Glassmorphism utilities
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #06b6d4, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Smooth animations
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

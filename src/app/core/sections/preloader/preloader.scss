@@ -1,0 +1,286 @@
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  overflow: hidden;
+}
+
+// Fondo con patrón eléctrico sutil
+.electric-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+
+  .electric-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+}
+
+// Contenido principal
+.preloader-content {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+// Sección del logo
+.logo-section {
+  margin-bottom: 3rem;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #06b6d4;
+  animation: iconPulse 2s ease-in-out infinite;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+  }
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  letter-spacing: 0.05em;
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.energy-line {
+  width: 120px;
+  height: 2px;
+  background: rgba(6, 182, 212, 0.2);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+
+  .energy-pulse {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+    animation: energyFlow 2s ease-in-out infinite;
+  }
+}
+
+// Sección de progreso
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 300px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #06b6d4, #6366f1);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  position: relative;
+
+  .progress-glow {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    background: #06b6d4;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
+    animation: glowPulse 1s ease-in-out infinite;
+  }
+}
+
+.progress-percentage {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #06b6d4;
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.loading-status {
+  font-size: 0.875rem;
+  color: rgba(248, 250, 252, 0.7);
+  margin: 0;
+  animation: statusFade 0.5s ease-in-out;
+}
+
+// Partículas de energía
+.energy-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #06b6d4;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+  animation: particleMove var(--duration) linear infinite;
+  animation-delay: var(--delay);
+
+  &:nth-child(1) {
+    top: 20%;
+    left: 10%;
+  }
+
+  &:nth-child(2) {
+    top: 60%;
+    left: 80%;
+  }
+
+  &:nth-child(3) {
+    top: 40%;
+    left: 20%;
+  }
+
+  &:nth-child(4) {
+    top: 80%;
+    left: 60%;
+  }
+
+  &:nth-child(5) {
+    top: 30%;
+    left: 90%;
+  }
+}
+
+// Animaciones
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.5));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+  }
+}
+
+@keyframes energyFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes statusFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes particleMove {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(-80vh) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 2rem;
+  }
+
+  .progress-container {
+    width: 250px;
+  }
+
+  .logo-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-content {
+    padding: 0 1rem;
+  }
+
+  .logo-text {
+    font-size: 1.75rem;
+  }
+
+  .progress-container {
+    width: 200px;
+  }
+}

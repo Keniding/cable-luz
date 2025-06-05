@@ -94,7 +94,7 @@ export class Landing implements OnInit, OnDestroy {
     // Simulate preloader
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 3500);
 
     // Show CTA banner after 10 seconds
     setTimeout(() => {

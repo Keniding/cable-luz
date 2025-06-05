@@ -1,0 +1,64 @@
+<section id="paquetes" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        Nuestros Paquetes
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Elige el plan perfecto para tu hogar y disfruta de beneficios exclusivos
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      @for (packageValue of packages; track packageValue.name; let i = $index) {
+        <div class="relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-4"
+             [class.ring-4]="packageValue.popular"
+             [class.ring-primary-500]="packageValue.popular"
+             [class.scale-105]="packageValue.popular">
+
+          <!-- Popular Badge -->
+          @if (packageValue.popular) {
+            <div class="absolute top-6 right-6 bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold transform rotate-12">
+              MÁS POPULAR
+            </div>
+          }
+
+          <div class="p-8">
+            <!-- Package Header -->
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ packageValue.name }}</h3>
+              <div class="mb-4">
+                  <span class="text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+                    {{ packageValue.price }}
+                  </span>
+                <span class="text-gray-500 ml-2">/mes</span>
+              </div>
+              <div class="inline-block bg-secondary-100 text-secondary-800 px-4 py-2 rounded-full text-sm font-semibold">
+                {{ packageValue.savings }}
+              </div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="space-y-4 mb-8">
+              @for (feature of packageValue.features; track feature) {
+                <li class="flex items-center space-x-3">
+                  <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <span class="text-gray-700">{{ feature }}</span>
+                </li>
+              }
+            </ul>
+
+            <!-- CTA Button -->
+            <button class="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 rounded-2xl font-bold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+              Contratar Ahora
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

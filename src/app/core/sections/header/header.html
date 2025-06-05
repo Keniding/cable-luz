@@ -1,0 +1,54 @@
+<header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300"
+        [class.shadow-lg]="isScrolled">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">CL</span>
+        </div>
+        <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+            CableLuz
+          </span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#inicio" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Inicio</a>
+        <a href="#paquetes" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Paquetes</a>
+        <a href="#testimonios" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Testimonios</a>
+        <a href="#contacto" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Contacto</a>
+        <button class="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+          Contratar
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="onToggleMobileMenu()" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          @if (!isMobileMenuOpen) {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          }
+          @if (isMobileMenuOpen) {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          }
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen) {
+      <div class="md:hidden py-4 border-t border-gray-200">
+        <div class="flex flex-col space-y-4">
+          <a href="#inicio" class="text-gray-700 hover:text-primary-600 font-medium">Inicio</a>
+          <a href="#paquetes" class="text-gray-700 hover:text-primary-600 font-medium">Paquetes</a>
+          <a href="#testimonios" class="text-gray-700 hover:text-primary-600 font-medium">Testimonios</a>
+          <a href="#contacto" class="text-gray-700 hover:text-primary-600 font-medium">Contacto</a>
+          <button class="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-full font-medium w-fit">
+            Contratar
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</header>

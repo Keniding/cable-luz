@@ -1,4 +1,3 @@
-const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 import PrimeUI from 'tailwindcss-primeui';
 
@@ -6,7 +5,6 @@ import PrimeUI from 'tailwindcss-primeui';
 module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
     extend: {

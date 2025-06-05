@@ -6,7 +6,12 @@ interface Feature {
   icon: any;
   title: string;
   description: string;
-  gradient: string;
+  iconBg: string;           // Fondo del icono
+  iconColor: string;        // Color del icono
+  iconBorder: string;       // Borde del contenedor
+  iconGlow: string;         // Efecto glow
+  gradientBg: string;       // Gradiente de fondo de la card
+  hoverBorder: string;      // Borde en hover
   delay: string;
   size: 'normal' | 'large';
 }
@@ -32,7 +37,12 @@ export class Features {
       icon: this.ZapIcon,
       title: 'Fibra Óptica',
       description: 'Tecnología de última generación con conexión directa por fibra óptica para máxima velocidad y estabilidad sin interrupciones.',
-      gradient: 'from-primary-500 to-secondary-500',
+      iconBg: 'bg-primary-600/20',
+      iconColor: 'text-primary-300',
+      iconBorder: 'border-primary-400/30',
+      iconGlow: 'bg-primary-500/30',
+      gradientBg: 'from-primary-600/20 to-primary-800/10',
+      hoverBorder: 'border-primary-400',
       delay: '0ms',
       size: 'large'
     },
@@ -40,7 +50,12 @@ export class Features {
       icon: this.FilmIcon,
       title: 'Contenido Premium',
       description: 'Acceso a Netflix, HBO Max, Disney+ y más plataformas integradas en tu decodificador inteligente.',
-      gradient: 'from-secondary-500 to-accent-500',
+      iconBg: 'bg-secondary-600/20',
+      iconColor: 'text-secondary-300',
+      iconBorder: 'border-secondary-400/30',
+      iconGlow: 'bg-secondary-500/30',
+      gradientBg: 'from-secondary-600/20 to-secondary-800/10',
+      hoverBorder: 'border-secondary-400',
       delay: '100ms',
       size: 'normal'
     },
@@ -48,7 +63,12 @@ export class Features {
       icon: this.WifiIcon,
       title: 'WiFi 6 Avanzado',
       description: 'Cobertura total en tu hogar con la última tecnología WiFi 6 para múltiples dispositivos simultáneos.',
-      gradient: 'from-accent-500 to-primary-600',
+      iconBg: 'bg-accent-600/20',
+      iconColor: 'text-accent-300',
+      iconBorder: 'border-accent-400/30',
+      iconGlow: 'bg-accent-500/30',
+      gradientBg: 'from-accent-600/20 to-accent-800/10',
+      hoverBorder: 'border-accent-400',
       delay: '200ms',
       size: 'normal'
     },
@@ -56,7 +76,12 @@ export class Features {
       icon: this.SmartphoneIcon,
       title: 'App de Control',
       description: 'Gestiona tu red, programa grabaciones y controla el contenido desde tu smartphone con nuestra app exclusiva.',
-      gradient: 'from-primary-600 to-highlight-500',
+      iconBg: 'bg-primary-600/20',
+      iconColor: 'text-primary-300',
+      iconBorder: 'border-primary-400/30',
+      iconGlow: 'bg-primary-500/30',
+      gradientBg: 'from-primary-600/20 to-secondary-700/10',
+      hoverBorder: 'border-primary-400',
       delay: '300ms',
       size: 'normal'
     },
@@ -64,7 +89,12 @@ export class Features {
       icon: this.ShieldIcon,
       title: 'Seguridad Digital',
       description: 'Protección avanzada contra malware y phishing para todos tus dispositivos conectados las 24 horas.',
-      gradient: 'from-highlight-500 to-accent-600',
+      iconBg: 'bg-secondary-600/20',
+      iconColor: 'text-secondary-300',
+      iconBorder: 'border-secondary-400/30',
+      iconGlow: 'bg-secondary-500/30',
+      gradientBg: 'from-secondary-600/20 to-accent-700/10',
+      hoverBorder: 'border-secondary-400',
       delay: '400ms',
       size: 'normal'
     },
@@ -72,7 +102,12 @@ export class Features {
       icon: this.Gamepad2Icon,
       title: 'Gaming Sin Lag',
       description: 'Priorización de tráfico para gaming con ping ultra bajo para una experiencia competitiva profesional.',
-      gradient: 'from-accent-600 to-secondary-600',
+      iconBg: 'bg-accent-600/20',
+      iconColor: 'text-accent-300',
+      iconBorder: 'border-accent-400/30',
+      iconGlow: 'bg-accent-500/30',
+      gradientBg: 'from-accent-600/20 to-primary-800/10',
+      hoverBorder: 'border-accent-400',
       delay: '500ms',
       size: 'large'
     }

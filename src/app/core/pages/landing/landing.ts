@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -29,6 +29,14 @@ interface FormData {
   message: string;
 }
 
+interface AppState {
+  isLoadingComplete: boolean;
+  isScrolled: boolean;
+  isMobileMenuOpen: boolean;
+  showBackToTop: boolean;
+  showCtaBanner: boolean;
+}
+
 @Component({
   selector: 'app-landing',
   standalone: true,
@@ -51,21 +59,30 @@ interface FormData {
   styleUrls: ['./landing.scss']
 })
 export class Landing implements OnInit, OnDestroy {
-  // State variables
-  isLoading = true;
-  isScrolled = false;
-  isMobileMenuOpen = false;
-  showBackToTop = false;
-  showCtaBanner = false;
+// State signals
+  private appState = signal<AppState>({
+    isLoadingComplete: false,
+    isScrolled: false,
+    isMobileMenuOpen: false,
+    showBackToTop: false,
+    showCtaBanner: false
+  });
 
-  // Form data
-  formData: FormData = {
+// Computed signals para el template
+  isLoadingComplete = computed(() => this.appState().isLoadingComplete);
+  isScrolled = computed(() => this.appState().isScrolled);
+  isMobileMenuOpen = computed(() => this.appState().isMobileMenuOpen);
+  showBackToTop = computed(() => this.appState().showBackToTop);
+  showCtaBanner = computed(() => this.appState().showCtaBanner);
+
+// Form data signal
+  formData = signal<FormData>({
     name: '',
     email: '',
     phone: '',
     package: '',
     message: ''
-  };
+  });
 
   contactInfo: ContactInfo[] = [
     {
@@ -90,32 +107,63 @@ export class Landing implements OnInit, OnDestroy {
     }
   ];
 
-  ngOnInit(): void {
-    // Simulate preloader
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3500);
+  private ctaBannerTimeout: any;
 
-    // Show CTA banner after 10 seconds
-    setTimeout(() => {
-      this.showCtaBanner = true;
-    }, 10000);
+  ngOnInit(): void {
+    // No necesitamos hacer nada aquí, el preloader se maneja solo
   }
 
   ngOnDestroy(): void {
-    // Cleanup if needed
+    if (this.ctaBannerTimeout) {
+      clearTimeout(this.ctaBannerTimeout);
+    }
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
+    // Solo procesar scroll si la carga está completa
+    if (!this.isLoadingComplete()) {
+      return;
+    }
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isScrolled = scrollTop > 100;
-    this.showBackToTop = scrollTop > 500;
+
+    this.appState.update(state => ({
+      ...state,
+      isScrolled: scrollTop > 100,
+      showBackToTop: scrollTop > 500
+    }));
   }
 
-  // Event handlers
+// Manejar cuando el preloader termina
+  onLoadingComplete(): void {
+    console.log('Loading completed!');
+
+    this.appState.update(state => ({
+      ...state,
+      isLoadingComplete: true
+    }));
+
+    // Programar CTA banner después de que termine el loading
+    this.scheduleCTABanner();
+  }
+
+  private scheduleCTABanner(): void {
+    // Mostrar CTA banner 10 segundos después de que termine el loading
+    this.ctaBannerTimeout = setTimeout(() => {
+      this.appState.update(state => ({
+        ...state,
+        showCtaBanner: true
+      }));
+    }, 10000);
+  }
+
+// Event handlers
   onToggleMobileMenu(): void {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.appState.update(state => ({
+      ...state,
+      isMobileMenuOpen: !state.isMobileMenuOpen
+    }));
   }
 
   onScrollToSection(sectionId: string): void {
@@ -130,11 +178,19 @@ export class Landing implements OnInit, OnDestroy {
         behavior: 'smooth'
       });
     }
-    this.isMobileMenuOpen = false;
+
+    // Cerrar menú móvil si está abierto
+    this.appState.update(state => ({
+      ...state,
+      isMobileMenuOpen: false
+    }));
   }
 
   onContractPackage(packageName: string): void {
-    this.formData.package = packageName;
+    this.formData.update(data => ({
+      ...data,
+      package: packageName
+    }));
     this.onScrollToSection('contacto');
   }
 
@@ -143,13 +199,13 @@ export class Landing implements OnInit, OnDestroy {
     alert(`¡Gracias ${formData.name}! Hemos recibido tu solicitud para el paquete ${formData.package}. Un asesor se comunicará contigo en menos de 30 minutos.`);
 
     // Reset form
-    this.formData = {
+    this.formData.set({
       name: '',
       email: '',
       phone: '',
       package: '',
       message: ''
-    };
+    });
   }
 
   onScrollToTop(): void {
@@ -160,7 +216,10 @@ export class Landing implements OnInit, OnDestroy {
   }
 
   onHideCtaBanner(): void {
-    this.showCtaBanner = false;
+    this.appState.update(state => ({
+      ...state,
+      showCtaBanner: false
+    }));
   }
 
   onContractNow(): void {

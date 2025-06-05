@@ -1,5 +1,5 @@
-@if (isLoading) {
-  <div class="preloader-overlay">
+@if (isLoading()) {
+  <div class="preloader-overlay" [class.fade-out]="!isVisible()">
     <!-- Fondo con patrón eléctrico sutil -->
     <div class="electric-bg">
       <div class="electric-grid"></div>
@@ -33,15 +33,22 @@
           <div class="progress-track">
             <div
               class="progress-fill"
-              [style.width.%]="loadingProgress">
+              [style.width.%]="loadingProgress()"
+              [class.completed]="loadingProgress() >= 100">
               <div class="progress-glow"></div>
             </div>
           </div>
-          <div class="progress-percentage">{{ loadingProgress | number:'1.0-0' }}%</div>
+          <div
+            class="progress-percentage"
+            [class.completed]="loadingProgress() >= 100">
+            {{ loadingProgress() }}%
+          </div>
         </div>
 
         <!-- Texto de estado -->
-        <p class="loading-status">{{ loadingText }}</p>
+        <p class="loading-status" [class.completed]="loadingProgress() >= 100">
+          {{ loadingText() }}
+        </p>
       </div>
     </div>
 

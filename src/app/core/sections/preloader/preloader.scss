@@ -1,12 +1,24 @@
 .preloader-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999; // Z-index más alto
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+
+  // Bloquear completamente cualquier interacción
+  pointer-events: all;
+  touch-action: none;
+  overscroll-behavior: none;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 // Fondo con patrón eléctrico sutil
@@ -31,6 +43,7 @@
   text-align: center;
   z-index: 10;
   position: relative;
+  animation: contentFadeIn 0.8s ease-out;
 }
 
 // Sección del logo
@@ -114,8 +127,16 @@
   height: 100%;
   background: linear-gradient(90deg, #06b6d4, #6366f1);
   border-radius: 2px;
-  transition: width 0.3s ease;
+  // Transición más suave para mejor sincronización
+  transition: width 0.1s linear, background 0.3s ease;
   position: relative;
+  // Asegurar que el ancho mínimo sea 0
+  min-width: 0;
+
+  &.completed {
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  }
 
   .progress-glow {
     position: absolute;
@@ -127,15 +148,30 @@
     border-radius: 50%;
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
     animation: glowPulse 1s ease-in-out infinite;
+    // Solo mostrar cuando hay progreso
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
+}
+
+// Mostrar el glow cuando hay progreso
+.progress-fill[style*="width"] .progress-glow {
+  opacity: 1;
 }
 
 .progress-percentage {
   font-size: 0.875rem;
   font-weight: 600;
   color: #06b6d4;
-  min-width: 2.5rem;
+  min-width: 3rem;
   text-align: right;
+  transition: color 0.3s ease;
+  // Asegurar que siempre muestre números enteros
+  font-variant-numeric: tabular-nums;
+
+  &.completed {
+    color: #10b981;
+  }
 }
 
 .loading-status {
@@ -143,6 +179,12 @@
   color: rgba(248, 250, 252, 0.7);
   margin: 0;
   animation: statusFade 0.5s ease-in-out;
+  transition: color 0.3s ease;
+
+  &.completed {
+    color: #10b981;
+    font-weight: 600;
+  }
 }
 
 // Partículas de energía
@@ -190,6 +232,17 @@
 }
 
 // Animaciones
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes gridMove {
   0% { transform: translate(0, 0); }
   100% { transform: translate(50px, 50px); }
@@ -282,5 +335,17 @@
 
   .progress-container {
     width: 200px;
+  }
+}
+
+// Estilos globales para bloquear scroll durante loading
+:host {
+  &.loading-active {
+    body {
+      overflow: hidden !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
   }
 }

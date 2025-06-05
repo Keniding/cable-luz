@@ -1,50 +1,53 @@
 <div class="min-h-screen bg-gray-50">
-  <!-- Preloader -->
-  <app-preloader [isLoading]="isLoading"></app-preloader>
+  <!-- Preloader - Completamente autónomo -->
+  <app-preloader (loadingComplete)="onLoadingComplete()"></app-preloader>
 
-  <!-- Header -->
-  <app-header
-    [isScrolled]="isScrolled"
-    [isMobileMenuOpen]="isMobileMenuOpen"
-    (toggleMobileMenu)="onToggleMobileMenu()"
-    (scrollToSection)="onScrollToSection($event)">
-  </app-header>
+  <!-- Contenido principal - Solo se muestra cuando el loading está completo -->
+  @if (isLoadingComplete()) {
+    <!-- Header -->
+    <app-header
+      [isScrolled]="isScrolled()"
+      [isMobileMenuOpen]="isMobileMenuOpen()"
+      (toggleMobileMenu)="onToggleMobileMenu()"
+      (scrollToSection)="onScrollToSection($event)">
+    </app-header>
 
-  <!-- Hero Section -->
-  <app-hero (scrollToSection)="onScrollToSection($event)"></app-hero>
+    <!-- Hero Section -->
+    <app-hero (scrollToSection)="onScrollToSection($event)"></app-hero>
 
-  <!-- Features Section -->
-  <app-features></app-features>
+    <!-- Features Section -->
+    <app-features></app-features>
 
-  <!-- Packages Section -->
-  <app-packages (contractPackage)="onContractPackage($event)"></app-packages>
+    <!-- Packages Section -->
+    <app-packages (contractPackage)="onContractPackage($event)"></app-packages>
 
-  <!-- Testimonials Section -->
-  <app-testimonials></app-testimonials>
+    <!-- Testimonials Section -->
+    <app-testimonials></app-testimonials>
 
-  <!-- FAQ Section -->
-  <app-faq></app-faq>
+    <!-- FAQ Section -->
+    <app-faq></app-faq>
 
-  <!-- Contact Section -->
-  <app-contact
-    [contactInfo]="contactInfo"
-    [formData]="formData"
-    (submitForm)="onSubmitForm($event)">
-  </app-contact>
+    <!-- Contact Section -->
+    <app-contact
+      [contactInfo]="contactInfo"
+      [formData]="formData()"
+      (submitForm)="onSubmitForm($event)">
+    </app-contact>
 
-  <!-- Footer -->
-  <app-footer></app-footer>
+    <!-- Footer -->
+    <app-footer></app-footer>
 
-  <!-- Back to Top Button -->
-  <app-back-to-top
-    [showBackToTop]="showBackToTop"
-    (scrollToTop)="onScrollToTop()">
-  </app-back-to-top>
+    <!-- Back to Top Button -->
+    <app-back-to-top
+      [showBackToTop]="showBackToTop()"
+      (scrollToTop)="onScrollToTop()">
+    </app-back-to-top>
 
-  <!-- CTA Banner -->
-  <app-cta
-    [showCtaBanner]="showCtaBanner"
-    (hideBanner)="onHideCtaBanner()"
-    (contractNow)="onContractNow()">
-  </app-cta>
+    <!-- CTA Banner -->
+    <app-cta
+      [showCtaBanner]="showCtaBanner()"
+      (hideBanner)="onHideCtaBanner()"
+      (contractNow)="onContractNow()">
+    </app-cta>
+  }
 </div>

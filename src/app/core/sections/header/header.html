@@ -1,54 +1,106 @@
-<header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-all duration-300"
-        [class.shadow-lg]="isScrolled">
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-sm">CL</span>
+<!-- header.html - BOTÓN CTA MEJORADO -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        [ngClass]="{
+        'glass-light backdrop-blur-glass border-b border-white/15': !isScrolled,
+        'glass-medium backdrop-blur-glass-lg border-b border-white/25 shadow-glass': isScrolled
+      }">
+
+  <!-- Efecto de brillo superior -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo mejorado -->
+      <div class="flex items-center space-x-3 group cursor-pointer" (click)="onScrollToSection('inicio')">
+        <div class="relative">
+          <!-- Fondo del icono con mejor glow -->
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
+          <div class="relative bg-gradient-to-r from-primary-600 to-secondary-600 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            <lucide-icon [img]="ZapIcon" class="w-6 h-6 text-white drop-shadow-sm"></lucide-icon>
+          </div>
         </div>
-        <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            CableLuz
-          </span>
+        <span class="text-2xl font-heading font-bold text-white group-hover:text-secondary-300 transition-colors duration-300 drop-shadow-sm">
+        CableLuz
+      </span>
       </div>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="#inicio" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Inicio</a>
-        <a href="#paquetes" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Paquetes</a>
-        <a href="#testimonios" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Testimonios</a>
-        <a href="#contacto" class="text-gray-700 hover:text-primary-600 font-medium transition-colors">Contacto</a>
-        <button class="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
-          Contratar
+      <!-- Navegación desktop mejorada -->
+      <nav class="hidden lg:flex items-center space-x-8">
+        <div class="flex items-center space-x-6">
+          @for (item of navItems; track item.id) {
+            <a href="#{{item.id}}"
+               class="group relative text-neutral-200 hover:text-white font-medium transition-all duration-300 py-2 px-3 rounded-lg"
+               (click)="onScrollToSection(item.id)">
+              <span class="relative z-10 drop-shadow-sm">{{ item.label }}</span>
+              <!-- Indicador activo mejorado -->
+              <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary-400 to-accent-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></div>
+              <!-- Efecto de fondo -->
+              <div class="absolute inset-0 bg-white/10 rounded-lg scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"></div>
+            </a>
+          }
+        </div>
+
+        <button class="group relative bg-white/15 backdrop-blur-sm border border-white/30 hover:bg-white/25 hover:border-white/50 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 overflow-hidden shadow-lg"
+                (click)="onContractService()">
+          <span class="relative z-10 flex items-center space-x-2">
+            <span class="drop-shadow-sm">Contratar Servicio</span>
+            <lucide-icon [img]="ArrowRightIcon" class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"></lucide-icon>
+          </span>
+          <div class="absolute inset-0 bg-white/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
         </button>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button (click)="onToggleMobileMenu()" class="md:hidden p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          @if (!isMobileMenuOpen) {
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          }
-          @if (isMobileMenuOpen) {
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          }
-        </svg>
+      <!-- Botón menú móvil mejorado -->
+      <button class="lg:hidden relative p-2 text-neutral-200 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/10"
+              (click)="onToggleMobileMenu()">
+        <div class="w-6 h-6 relative">
+          <lucide-icon [img]="MenuIcon"
+                       class="w-6 h-6 absolute inset-0 transition-all duration-300 drop-shadow-sm"
+                       [ngClass]="{
+                       'opacity-100 rotate-0': !isMobileMenuOpen,
+                       'opacity-0 rotate-180': isMobileMenuOpen
+                     }"></lucide-icon>
+          <lucide-icon [img]="XIcon"
+                       class="w-6 h-6 absolute inset-0 transition-all duration-300 drop-shadow-sm"
+                       [ngClass]="{
+                       'opacity-0 -rotate-180': !isMobileMenuOpen,
+                       'opacity-100 rotate-0': isMobileMenuOpen
+                     }"></lucide-icon>
+        </div>
       </button>
     </div>
 
-    <!-- Mobile Menu -->
-    @if (isMobileMenuOpen) {
-      <div class="md:hidden py-4 border-t border-gray-200">
-        <div class="flex flex-col space-y-4">
-          <a href="#inicio" class="text-gray-700 hover:text-primary-600 font-medium">Inicio</a>
-          <a href="#paquetes" class="text-gray-700 hover:text-primary-600 font-medium">Paquetes</a>
-          <a href="#testimonios" class="text-gray-700 hover:text-primary-600 font-medium">Testimonios</a>
-          <a href="#contacto" class="text-gray-700 hover:text-primary-600 font-medium">Contacto</a>
-          <button class="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-6 py-2 rounded-full font-medium w-fit">
-            Contratar
-          </button>
-        </div>
+    <!-- Menú móvil mejorado -->
+    <div class="lg:hidden overflow-hidden transition-all duration-300"
+         [ngClass]="{
+         'max-h-0 opacity-0': !isMobileMenuOpen,
+         'max-h-96 opacity-100': isMobileMenuOpen
+       }">
+      <div class="glass-medium rounded-2xl m-4 p-6 border border-white/20 backdrop-blur-glass shadow-glass-lg">
+        <nav class="space-y-4">
+          @for (item of navItems; track item.id) {
+            <a href="#{{item.id}}"
+               class="group flex items-center space-x-3 text-neutral-200 hover:text-white font-medium py-3 px-4 rounded-xl hover:bg-white/15 transition-all duration-300"
+               (click)="onScrollToSection(item.id)">
+              <lucide-icon [img]="item.icon" class="w-5 h-5 text-secondary-400 group-hover:text-accent-400 transition-colors duration-300"></lucide-icon>
+              <span class="drop-shadow-sm">{{ item.label }}</span>
+              <div class="flex-1"></div>
+              <lucide-icon [img]="ArrowRightIcon" class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"></lucide-icon>
+            </a>
+          }
+        </nav>
+
+        <!-- 🎯 BOTÓN CTA MÓVIL ARMONIOSO -->
+        <button class="w-full mt-6 bg-gradient-to-r from-secondary-500 to-accent-500 hover:from-secondary-600 hover:to-accent-600 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 group shadow-lg"
+                (click)="onContractService()">
+          <span class="drop-shadow-sm">Contratar Servicio</span>
+          <lucide-icon [img]="ArrowRightIcon" class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"></lucide-icon>
+        </button>
       </div>
-    }
+    </div>
   </div>
+
+  <!-- Línea de separación inferior -->
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 </header>

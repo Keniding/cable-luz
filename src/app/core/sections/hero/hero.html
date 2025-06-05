@@ -1,55 +1,102 @@
-<section id="inicio" class="pt-20 pb-12 bg-gradient-to-br from-primary-600 via-purple-600 to-accent-600 text-white overflow-hidden">
-  <div class="container mx-auto px-4">
+<section id="inicio" class="pt-20 pb-12 bg-gradient-tech text-white overflow-hidden relative min-h-screen">
+  <!-- Efectos de fondo mejorados -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-800/30 via-secondary-700/20 to-accent-600/25"></div>
+
+  <!-- Patrón de puntos más sutil -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
     <!-- Bento Grid Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[80vh]">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-[85vh] items-center">
 
       <!-- Main Hero Content -->
-      <div class="lg:col-span-7 flex flex-col justify-center space-y-8">
+      <div class="lg:col-span-7 flex flex-col justify-center space-y-8 animate-slide-in-left">
         <div class="space-y-6">
-          <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-            Internet
-            <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                UltraRápido
-              </span>
-            <br>y Cable HD
+          <!-- Título con mejor contraste -->
+          <h1 class="text-5xl md:text-7xl font-heading font-bold leading-tight">
+            <span class="text-white drop-shadow-lg">Internet</span>
+            <br>
+            <span class="bg-gradient-to-r from-secondary-300 via-secondary-400 to-accent-300 bg-clip-text text-transparent animate-gradient-text bg-300% filter drop-shadow-lg">
+            UltraRápido
+          </span>
+            <br>
+            <span class="text-white drop-shadow-lg">y Cable HD</span>
           </h1>
-          <p class="text-xl text-white/90 max-w-2xl leading-relaxed">
+
+          <!-- Descripción con mejor legibilidad -->
+          <p class="text-xl text-neutral-100 max-w-2xl leading-relaxed font-medium drop-shadow-md">
             La experiencia de navegación más veloz del país con fibra óptica directa a tu hogar.
             Disfruta de streaming sin buffering y más de 200 canales en alta definición.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button class="bg-white text-primary-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2">
-              <span>Ver Paquetes</span>
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
+
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <!-- Botón principal mejorado -->
+            <button
+              class="group relative bg-white text-primary-800 px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-glow-primary transform hover:-translate-y-2 transition-all duration-400 flex items-center justify-center space-x-2 overflow-hidden"
+              (click)="onViewPackages()">
+              <span class="relative z-10 font-semibold">Ver Paquetes</span>
+              <lucide-icon
+                [img]="ArrowRightIcon"
+                class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+              </lucide-icon>
+              <!-- Efecto shimmer -->
+              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-600 bg-gradient-to-r from-transparent via-primary-200/30 to-transparent"></div>
             </button>
-            <button class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300">
-              Conocer Más
+
+            <!-- Botón secundario mejorado -->
+            <button
+              class="group relative border-2 border-white/40 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:border-white/70 hover:bg-white/15 transition-all duration-400 overflow-hidden flex items-center justify-center space-x-2 backdrop-blur-sm"
+              (click)="onLearnMore()">
+              <span class="relative z-10 font-semibold">Conocer Más</span>
+              <lucide-icon
+                [img]="InfoIcon"
+                class="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300">
+              </lucide-icon>
+              <div class="absolute inset-0 bg-white/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Stats Cards -->
-      <div class="lg:col-span-5 grid grid-cols-2 gap-4">
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-          <div class="text-3xl font-bold mb-2">+300</div>
-          <div class="text-white/80">Mbps Garantizados</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-          <div class="text-3xl font-bold mb-2">50K+</div>
-          <div class="text-white/80">Clientes Felices</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-          <div class="text-3xl font-bold mb-2">200+</div>
-          <div class="text-white/80">Canales HD</div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-          <div class="text-3xl font-bold mb-2">24/7</div>
-          <div class="text-white/80">Soporte Técnico</div>
-        </div>
+      <!-- Stats Cards mejoradas -->
+      <div class="lg:col-span-5 grid grid-cols-2 gap-6 animate-slide-in-right">
+        @for (stat of stats; track stat.value; let i = $index) {
+          <div class="group glass-light rounded-3xl p-6 text-center hover:glass-medium hover:-translate-y-3 hover:shadow-glass-lg transition-all duration-500 relative overflow-hidden border border-white/20">
+
+            <!-- Efecto de fondo dinámico mejorado -->
+            <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-400"
+                 [ngClass]="getGradientClass(stat.label)"></div>
+
+            <div class="relative z-10">
+              <!-- Icono con mejor contraste -->
+              <div class="flex justify-center mb-4">
+                <div class="p-4 rounded-2xl transition-all duration-300 backdrop-blur-sm"
+                     [ngClass]="stat.bgColorClass">
+                  <lucide-icon
+                    [img]="stat.icon"
+                    class="w-7 h-7 group-hover:scale-110 transition-transform duration-300"
+                    [ngClass]="stat.colorClass">
+                  </lucide-icon>
+                </div>
+              </div>
+
+              <!-- Números con mejor contraste -->
+              <div class="text-4xl font-bold mb-2 text-white drop-shadow-lg group-hover:text-secondary-300 transition-colors duration-300">
+                {{ stat.value }}
+              </div>
+              <!-- Etiquetas con mejor legibilidad -->
+              <div class="text-neutral-200 text-sm font-semibold drop-shadow-sm">
+                {{ stat.label }}
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   </div>
+
+  <!-- Elementos decorativos mejorados -->
+  <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-400/8 rounded-full blur-3xl animate-float"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-56 h-56 bg-secondary-400/8 rounded-full blur-3xl animate-float" style="animation-delay: 3s;"></div>
+  <div class="absolute top-1/2 right-1/3 w-40 h-40 bg-accent-400/6 rounded-full blur-2xl animate-float" style="animation-delay: 1.5s;"></div>
 </section>

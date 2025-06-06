@@ -1,33 +1,302 @@
-<section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">
-        Preguntas Frecuentes
+<section id="faq" class="py-24 bg-gradient-to-br from-neutral-900 via-neutral-800 to-primary-950 relative overflow-hidden">
+
+  <!-- Efectos de fondo tecnológicos -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-secondary-900/15 to-accent-900/10"></div>
+
+  <!-- Patrón de red neuronal -->
+  <div class="absolute inset-0 opacity-10">
+    <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none">
+      <!-- Nodos de conexión -->
+      <circle cx="200" cy="150" r="3" fill="#3b82f6" opacity="0.6" class="animate-pulse"/>
+      <circle cx="400" cy="200" r="2" fill="#0891b2" opacity="0.4" class="animate-pulse" style="animation-delay: 0.5s;"/>
+      <circle cx="600" cy="120" r="2.5" fill="#10b981" opacity="0.5" class="animate-pulse" style="animation-delay: 1s;"/>
+      <circle cx="800" cy="180" r="2" fill="#f59e0b" opacity="0.3" class="animate-pulse" style="animation-delay: 1.5s;"/>
+      <circle cx="1000" cy="140" r="3" fill="#3b82f6" opacity="0.6" class="animate-pulse" style="animation-delay: 2s;"/>
+
+      <!-- Líneas de conexión -->
+      <line x1="200" y1="150" x2="400" y2="200" stroke="#3b82f6" stroke-width="1" opacity="0.3" class="animate-pulse"/>
+      <line x1="400" y1="200" x2="600" y2="120" stroke="#0891b2" stroke-width="1" opacity="0.2" class="animate-pulse" style="animation-delay: 0.5s;"/>
+      <line x1="600" y1="120" x2="800" y2="180" stroke="#10b981" stroke-width="1" opacity="0.25" class="animate-pulse" style="animation-delay: 1s;"/>
+      <line x1="800" y1="180" x2="1000" y2="140" stroke="#f59e0b" stroke-width="1" opacity="0.2" class="animate-pulse" style="animation-delay: 1.5s;"/>
+    </svg>
+  </div>
+
+  <!-- Orbes de luz animados -->
+  <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary-500/8 rounded-full blur-3xl animate-float"></div>
+  <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-secondary-500/6 rounded-full blur-3xl animate-float" style="animation-delay: 3s;"></div>
+  <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-accent-500/4 rounded-full blur-2xl animate-float" style="animation-delay: 1.5s;"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+
+    <!-- Header tecnológico -->
+    <div class="text-center mb-20 animate-fade-in-up">
+      <div class="inline-flex items-center space-x-2 bg-primary-500/15 backdrop-blur-xl border border-primary-400/30 text-primary-300 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-glow-primary">
+        <lucide-icon [img]="HelpCircleIcon" class="w-4 h-4"></lucide-icon>
+        <span class="drop-shadow-sm">Preguntas Frecuentes</span>
+      </div>
+
+      <h2 class="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-lg">
+        Resolvemos tus
+        <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent animate-gradient-text bg-300%">
+        dudas
+      </span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Resolvemos tus dudas más comunes
+
+      <p class="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-sm">
+        Encuentra respuestas a las preguntas más comunes sobre nuestros servicios
+        y tecnología de vanguardia
       </p>
     </div>
 
-    <div class="max-w-4xl mx-auto space-y-4">
-      @for (faq of faqs; track faq.question; let i = $index) {
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <button (click)="toggleFaq(i)"
-                  class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
-            <span class="font-semibold text-gray-900">{{ faq.question }}</span>
-            <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-200"
-                 [class.rotate-180]="openFaq === i"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          @if (openFaq === i) {
-            <div class="px-8 pb-6">
-              <p class="text-gray-600 leading-relaxed">{{ faq.answer }}</p>
+    <!-- 🚀 ACORDEÓN FLOTANTE INNOVADOR -->
+    <div class="max-w-5xl mx-auto relative">
+
+      <!-- Contenedor principal con efectos de profundidad -->
+      <div class="relative space-y-8">
+
+        @for (faq of faqs; track faq.question; let i = $index) {
+          <!-- Cada FAQ como una "carta flotante" -->
+          <div class="group relative animate-fade-in-up"
+               [style.animation-delay]="(i * 150) + 'ms'"
+               [ngClass]="{
+               'z-50 scale-105': openFaq === i,
+               'z-10 hover:z-20': openFaq !== i
+             }">
+
+            <!-- Sombra dinámica que se expande -->
+            <div class="absolute -inset-4 rounded-3xl transition-all duration-700 opacity-0 group-hover:opacity-100"
+                 [ngClass]="{
+                 'opacity-100 blur-2xl': openFaq === i,
+                 'opacity-0 blur-xl': openFaq !== i
+               }"
+                 [style.background]="getShadowGradient(i)"></div>
+
+            <!-- Contenedor principal de la carta -->
+            <div class="relative overflow-hidden rounded-3xl transition-all duration-700 transform"
+                 [ngClass]="{
+                 'scale-105 shadow-2xl': openFaq === i,
+                 'scale-100 hover:scale-[1.02] shadow-xl hover:shadow-2xl': openFaq !== i
+               }">
+
+              <!-- Fondo glassmorphic con gradiente dinámico -->
+              <div class="absolute inset-0 backdrop-blur-xl border rounded-3xl transition-all duration-500"
+                   [ngClass]="{
+                   'glass-active border-white/30': openFaq === i,
+                   'glass-medium border-white/20 group-hover:glass-active group-hover:border-white/25': openFaq !== i
+                 }"></div>
+
+              <!-- Gradiente de fondo que cambia según el estado -->
+              <div class="absolute inset-0 bg-gradient-to-br transition-all duration-700 rounded-3xl"
+                   [ngClass]="{
+                   'opacity-15': openFaq === i,
+                   'opacity-0 group-hover:opacity-8': openFaq !== i
+                 }"
+                   [style.background]="getCardGradient(i)"></div>
+
+              <!-- Borde superior brillante -->
+              <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent transition-opacity duration-500"
+                   [ngClass]="{
+                   'opacity-100': openFaq === i,
+                   'opacity-0 group-hover:opacity-60': openFaq !== i
+                 }"></div>
+
+              <!-- Efecto de partículas flotantes -->
+              @if (openFaq === i) {
+                <div class="absolute inset-0 pointer-events-none">
+                  @for (particle of particles; track $index) {
+                    <div class="absolute w-1 h-1 bg-primary-400/60 rounded-full animate-float-particle"
+                         [style.left]="particle.x + '%'"
+                         [style.top]="particle.y + '%'"
+                         [style.animation-delay]="particle.delay + 's'"
+                         [style.animation-duration]="particle.duration + 's'"></div>
+                  }
+                </div>
+              }
+
+              <!-- Contenido principal -->
+              <div class="relative z-10 p-8 lg:p-10">
+
+                <!-- Header del FAQ -->
+                <button (click)="toggleFaq(i)"
+                        class="w-full text-left group-faq flex items-center space-x-6 transition-all duration-300">
+
+                  <!-- Icono con efecto de órbita -->
+                  <div class="relative flex-shrink-0">
+                    <!-- Órbita externa -->
+                    <div class="absolute inset-0 rounded-2xl transition-all duration-700"
+                         [ngClass]="{
+                         'animate-spin-slow border-2 border-dashed border-primary-400/30': openFaq === i,
+                         'border border-transparent': openFaq !== i
+                       }"
+                         style="animation-duration: 8s;"></div>
+
+                    <!-- Icono principal -->
+                    <div class="relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl transition-all duration-500 backdrop-blur-sm"
+                         [ngClass]="getIconBgClass(i)"
+                         [style.transform]="openFaq === i ? 'scale(1.1) rotate(5deg)' : 'scale(1)'">
+                      <lucide-icon [img]="getQuestionIcon(i)"
+                                   class="w-8 h-8 transition-all duration-500"
+                                   [ngClass]="getIconColorClass(i)"></lucide-icon>
+                    </div>
+
+                    <!-- Pulso de energía -->
+                    @if (openFaq === i) {
+                      <div class="absolute inset-0 rounded-2xl animate-ping opacity-20"
+                           [style.background]="getIconGradient(i)"></div>
+                    }
+                  </div>
+
+                  <!-- Contenido de la pregunta -->
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-2xl lg:text-3xl font-heading font-bold text-white mb-2 transition-all duration-300 drop-shadow-lg"
+                        [ngClass]="{
+                        'text-primary-300 transform translate-x-2': openFaq === i,
+                        'group-hover:text-primary-300': openFaq !== i
+                      }">
+                      {{ faq.question }}
+                    </h3>
+
+                    <!-- Indicador de estado -->
+                    <div class="flex items-center space-x-3 text-sm">
+                    <span class="transition-all duration-300"
+                          [ngClass]="{
+                            'text-primary-400 font-medium': openFaq === i,
+                            'text-neutral-400 group-hover:text-primary-400': openFaq !== i
+                          }">
+                      {{ openFaq === i ? 'Respuesta completa' : 'Toca para expandir' }}
+                    </span>
+
+                      <!-- Barra de progreso animada -->
+                      <div class="flex-1 h-1 bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transition-all duration-700"
+                             [style.width]="openFaq === i ? '100%' : '0%'"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Botón de expansión con rotación 3D -->
+                  <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 backdrop-blur-sm"
+                         [ngClass]="{
+                         'bg-primary-500/20 border-2 border-primary-400/40 shadow-glow-primary': openFaq === i,
+                         'bg-white/10 border border-white/20 group-hover:bg-primary-500/15 group-hover:border-primary-400/30': openFaq !== i
+                       }">
+                      <lucide-icon [img]="ChevronDownIcon"
+                                   class="w-6 h-6 text-white transition-all duration-500"
+                                   [style.transform]="openFaq === i ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg) scale(1)'"></lucide-icon>
+                    </div>
+                  </div>
+                </button>
+
+                <!-- Contenido expandible con animación cinematográfica -->
+                <div class="overflow-hidden transition-all duration-700 ease-out"
+                     [ngClass]="{
+                     'max-h-96 opacity-100 mt-8': openFaq === i,
+                     'max-h-0 opacity-0 mt-0': openFaq !== i
+                   }">
+
+                  <!-- Separador animado -->
+                  <div class="relative mb-8">
+                    <div class="absolute inset-0 flex items-center">
+                      <div class="w-full border-t border-white/10"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                      <div class="px-4 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full">
+                        <lucide-icon [img]="CheckCircleIcon" class="w-6 h-6 text-accent-400"></lucide-icon>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Respuesta con tipografía mejorada -->
+                  <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                      <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-accent-500/15 border border-accent-400/25 flex items-center justify-center mt-2">
+                        <lucide-icon [img]="InfoIcon" class="w-4 h-4 text-accent-400"></lucide-icon>
+                      </div>
+                      <p class="text-neutral-200 leading-relaxed font-medium text-lg flex-1 animate-fade-in-up">
+                        {{ faq.answer }}
+                      </p>
+                    </div>
+
+                    <!-- Información adicional con diseño especial -->
+                    @if (faq.additionalInfo) {
+                      <div class="relative p-6 rounded-2xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <!-- Fondo glassmorphic -->
+                        <div class="absolute inset-0 bg-primary-500/10 backdrop-blur-sm border border-primary-400/20 rounded-2xl"></div>
+
+                        <!-- Efecto de brillo -->
+                        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent"></div>
+
+                        <div class="relative flex items-start space-x-4">
+                          <div class="flex-shrink-0 w-6 h-6 rounded-lg bg-primary-500/20 border border-primary-400/30 flex items-center justify-center mt-1">
+                            <lucide-icon [img]="ZapIcon" class="w-3 h-3 text-primary-400"></lucide-icon>
+                          </div>
+                          <p class="text-primary-300 font-medium">
+                            {{ faq.additionalInfo }}
+                          </p>
+                        </div>
+                      </div>
+                    }
+
+                    <!-- Botones de acción rápida -->
+                    <div class="flex flex-wrap gap-3 pt-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                      <button class="inline-flex items-center space-x-2 px-4 py-2 bg-primary-500/15 border border-primary-400/25 rounded-xl text-primary-300 text-sm font-medium hover:bg-primary-500/20 hover:border-primary-400/35 transition-all duration-300 backdrop-blur-sm">
+                        <lucide-icon [img]="MessageCircleIcon" class="w-4 h-4"></lucide-icon>
+                        <span>¿Más dudas?</span>
+                      </button>
+                      <button class="inline-flex items-center space-x-2 px-4 py-2 bg-secondary-500/15 border border-secondary-400/25 rounded-xl text-secondary-300 text-sm font-medium hover:bg-secondary-500/20 hover:border-secondary-400/35 transition-all duration-300 backdrop-blur-sm">
+                        <lucide-icon [img]="PhoneIcon" class="w-4 h-4"></lucide-icon>
+                        <span>Contactar</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- CTA Section tecnológico -->
+    <div class="text-center mt-20 animate-fade-in-up" style="animation-delay: 1000ms;">
+      <div class="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl p-12 text-white relative overflow-hidden shadow-2xl max-w-4xl mx-auto">
+
+        <!-- Efectos de fondo -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/30 via-transparent to-secondary-500/30"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+
+        <div class="relative z-10">
+          <!-- Icono central -->
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/15 border border-white/25 mb-6 shadow-lg">
+            <lucide-icon [img]="MessageCircleIcon" class="w-8 h-8 text-white"></lucide-icon>
+          </div>
+
+          <h3 class="text-3xl text-white/90 md:text-4xl font-heading font-bold mb-4 drop-shadow-lg">
+            ¿No encontraste tu respuesta?
+          </h3>
+          <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-sm">
+            Nuestro equipo de soporte está disponible 24/7 para ayudarte con cualquier consulta
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <!-- Botón de contacto principal -->
+            <button class="group bg-white text-primary-700 px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-glow-primary transform hover:-translate-y-2 transition-all duration-400 flex items-center justify-center space-x-2 overflow-hidden shadow-xl">
+              <lucide-icon [img]="PhoneIcon" class="w-5 h-5 relative z-10"></lucide-icon>
+              <span class="relative z-10">Contactar Soporte</span>
+              <!-- Efecto shimmer -->
+              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-600 bg-gradient-to-r from-transparent via-primary-200/30 to-transparent"></div>
+            </button>
+
+            <!-- Botón de chat -->
+            <button class="group border-2 border-white/40 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:border-white/70 hover:bg-white/15 transition-all duration-400 flex items-center justify-center space-x-2 backdrop-blur-sm">
+              <lucide-icon [img]="MessageSquareIcon" class="w-5 h-5"></lucide-icon>
+              <span>Chat en Vivo</span>
+            </button>
+          </div>
         </div>
-      }
+      </div>
     </div>
   </div>
 </section>

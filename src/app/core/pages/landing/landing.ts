@@ -7,7 +7,7 @@ import { Header } from '../../sections/header/header';
 import { Hero } from '../../sections/hero/hero';
 import { Features } from '../../sections/features/features';
 import { Packages } from '../../sections/packages/packages';
-import { TestimonialsComponent } from '../../sections/testimonials/testimonials';
+import { Testimonials } from '../../sections/testimonials/testimonials';
 import { Faq } from '../../sections/faq/faq';
 import { Contact } from '../../sections/contact/contact';
 import { Footer } from '../../sections/footer/footer';
@@ -47,7 +47,7 @@ interface AppState {
     Hero,
     Features,
     Packages,
-    TestimonialsComponent,
+    Testimonials,
     Faq,
     Contact,
     Footer,

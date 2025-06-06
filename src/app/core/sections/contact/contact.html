@@ -1,98 +1,250 @@
-<section id="contacto" class="py-20 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">
-        Contáctanos
+<section id="contacto" class="py-24 bg-gradient-to-br from-neutral-900 via-neutral-800 to-primary-950 relative overflow-hidden">
+
+  <!-- Efectos de fondo tecnológicos -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-secondary-900/15 to-accent-900/10"></div>
+
+  <!-- Patrón de puntos tecnológico -->
+  <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle, rgba(59, 130, 246, 0.2) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+  <!-- Orbes de luz animados -->
+  <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary-500/8 rounded-full blur-3xl animate-float"></div>
+  <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-secondary-500/6 rounded-full blur-3xl animate-float" style="animation-delay: 3s;"></div>
+  <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-accent-500/4 rounded-full blur-2xl animate-float" style="animation-delay: 1.5s;"></div>
+
+  <!-- Líneas de conexión animadas -->
+  <div class="absolute inset-0 opacity-10">
+    <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none">
+      <path d="M100 200 Q300 100 500 200 T900 200" stroke="url(#contactGradient1)" stroke-width="2" fill="none" class="animate-pulse"/>
+      <path d="M200 400 Q400 300 600 400 T1000 400" stroke="url(#contactGradient2)" stroke-width="2" fill="none" class="animate-pulse" style="animation-delay: 1s;"/>
+      <defs>
+        <linearGradient id="contactGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0"/>
+          <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.4"/>
+          <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+        </linearGradient>
+        <linearGradient id="contactGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#0891b2;stop-opacity:0"/>
+          <stop offset="50%" style="stop-color:#0891b2;stop-opacity:0.4"/>
+          <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+
+    <!-- Header tecnológico -->
+    <div class="text-center mb-20 animate-fade-in-up">
+      <div class="inline-flex items-center space-x-2 bg-primary-500/15 backdrop-blur-xl border border-primary-400/30 text-primary-300 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-glow-primary">
+        <lucide-icon [img]="MessageCircleIcon" class="w-4 h-4"></lucide-icon>
+        <span class="drop-shadow-sm">Conecta con Nosotros</span>
+      </div>
+
+      <h2 class="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-lg">
+        Estamos aquí para
+        <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent animate-gradient-text bg-300%">
+        ayudarte
+      </span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Estamos aquí para responder todas tus preguntas
+
+      <p class="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-sm">
+        Chatea con nuestro asistente virtual y obtén información personalizada al instante
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Contact Info -->
-      <div class="space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+
+      <!-- Contact Info moderna y simple -->
+      <div class="space-y-6 animate-slide-in-left">
         @for (contact of contactInfo; track contact.title) {
-          <div class="flex items-start space-x-4 p-6 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl flex items-center justify-center flex-shrink-0">
-              @switch (contact.icon) {
-                @case ('phone') {
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                }
-                @case ('mail') {
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                }
-                @case ('location') {
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                }
-                @case ('clock') {
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                }
-              }
-            </div>
-            <div>
-              <h3 class="font-bold text-gray-900 mb-2">{{ contact.title }}</h3>
-              <div class="text-gray-600 space-y-1">
-                @for (info of contact.info; track info) {
-                  <p>{{ info }}</p>
-                }
+          <div class="group relative">
+            <!-- Fondo simple con gradiente sutil -->
+            <div class="bg-gradient-to-r from-neutral-800/80 to-neutral-700/60 backdrop-blur-sm border border-neutral-600/30 rounded-2xl p-6
+                    group-hover:from-neutral-700/80 group-hover:to-neutral-600/60 group-hover:border-primary-500/40
+                    transition-all duration-300 hover:scale-105">
+
+              <div class="flex items-center space-x-4">
+                <!-- Icono con diseño hexagonal -->
+                <div class="relative">
+                  <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center
+                          group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg">
+                    <lucide-icon [img]="getContactIcon(contact.icon)" class="w-7 h-7 text-white"></lucide-icon>
+                  </div>
+                  <!-- Punto de notificación -->
+                  <div class="absolute -top-1 -right-1 w-4 h-4 bg-accent-400 rounded-full animate-pulse"></div>
+                </div>
+
+                <!-- Información -->
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-white mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                    {{ contact.title }}
+                  </h3>
+                  <div class="space-y-1">
+                    @for (info of contact.info; track info) {
+                      <p class="text-neutral-400 text-sm font-medium group-hover:text-neutral-300 transition-colors duration-300">
+                        {{ info }}
+                      </p>
+                    }
+                  </div>
+                </div>
+
+                <!-- Flecha indicativa -->
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <lucide-icon [img]="ChevronRightIcon" class="w-5 h-5 text-primary-400"></lucide-icon>
+                </div>
               </div>
             </div>
           </div>
         }
+
+        <!-- Info adicional con diseño de tarjeta -->
+        <div class="bg-gradient-to-r from-accent-900/40 to-accent-800/30 border border-accent-600/20 rounded-2xl p-6 mt-8">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-8 h-8 bg-accent-500 rounded-lg flex items-center justify-center">
+              <lucide-icon [img]="InfoIcon" class="w-4 h-4 text-white"></lucide-icon>
+            </div>
+            <h4 class="text-white font-bold">Garantías</h4>
+          </div>
+          <div class="grid grid-cols-1 gap-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-primary-400 rounded-full"></div>
+              <span class="text-neutral-300 text-sm">Respuesta en 2 horas</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-secondary-400 rounded-full"></div>
+              <span class="text-neutral-300 text-sm">Instalación gratuita</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-accent-400 rounded-full"></div>
+              <span class="text-neutral-300 text-sm">Soporte 24/7</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Contact Form -->
-      <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200">
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Solicita Información</h3>
-        <form (ngSubmit)="onSubmit()" class="space-y-6">
-          <div>
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
-            <input type="text" id="name" [(ngModel)]="formData.name" name="name" required
-                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+      <!-- Chat Interface Innovador -->
+      <div class="animate-slide-in-right">
+        <div class="bg-gradient-to-b from-neutral-800/60 to-neutral-900/80 backdrop-blur-sm border border-neutral-600/30 rounded-2xl overflow-hidden">
+
+          <!-- Header del chat -->
+          <div class="bg-gradient-to-r from-primary-500/20 to-secondary-500/20 border-b border-neutral-600/30 p-6">
+            <div class="flex items-center space-x-3">
+              <div class="relative">
+                <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
+                  <lucide-icon [img]="BotIcon" class="w-6 h-6 text-white"></lucide-icon>
+                </div>
+                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-neutral-800"></div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Asistente CableLuz</h3>
+                <p class="text-sm text-neutral-400">En línea • Responde al instante</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
-            <input type="email" id="email" [(ngModel)]="formData.email" name="email" required
-                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
+
+          <!-- Chat Messages -->
+          <div class="h-96 overflow-y-auto p-6 space-y-4 chat-container">
+
+            @for (message of chatMessages; track message.id) {
+              <div class="flex" [ngClass]="message.type === 'user' ? 'justify-end' : 'justify-start'">
+
+                @if (message.type === 'bot') {
+                  <!-- Mensaje del Bot -->
+                  <div class="flex items-start space-x-3 max-w-xs">
+                    <div class="w-8 h-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <lucide-icon [img]="BotIcon" class="w-4 h-4 text-white"></lucide-icon>
+                    </div>
+                    <div class="bg-neutral-700/50 rounded-2xl rounded-bl-md p-4 backdrop-blur-sm">
+                      <p class="text-white text-sm">{{ message.message }}</p>
+
+                      <!-- Opciones de respuesta -->
+                      @if (message.options) {
+                        <div class="mt-3 space-y-2">
+                          @for (option of message.options; track option) {
+                            <button
+                              (click)="selectOption(option)"
+                              class="block w-full text-left px-3 py-2 bg-primary-500/20 hover:bg-primary-500/30
+                                 text-primary-300 rounded-lg text-sm transition-colors duration-200
+                                 border border-primary-500/30 hover:border-primary-500/50">
+                              {{ option }}
+                            </button>
+                          }
+                        </div>
+                      }
+                    </div>
+                  </div>
+                } @else {
+                  <!-- Mensaje del Usuario -->
+                  <div class="flex items-start space-x-3 max-w-xs">
+                    <div class="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl rounded-br-md p-4">
+                      <p class="text-white text-sm">{{ message.message }}</p>
+                    </div>
+                    <div class="w-8 h-8 bg-neutral-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <lucide-icon [img]="UserIcon" class="w-4 h-4 text-white"></lucide-icon>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+
+            <!-- Indicador de escritura -->
+            @if (isTyping) {
+              <div class="flex justify-start">
+                <div class="flex items-start space-x-3 max-w-xs">
+                  <div class="w-8 h-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <lucide-icon [img]="BotIcon" class="w-4 h-4 text-white"></lucide-icon>
+                  </div>
+                  <div class="bg-neutral-700/50 rounded-2xl rounded-bl-md p-4 backdrop-blur-sm">
+                    <div class="flex space-x-1">
+                      <div class="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
+                      <div class="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+                      <div class="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
           </div>
-          <div>
-            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
-            <input type="tel" id="phone" [(ngModel)]="formData.phone" name="phone" required
-                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
-          </div>
-          <div>
-            <label for="package" class="block text-sm font-medium text-gray-700 mb-2">Paquete de interés</label>
-            <select id="package" [(ngModel)]="formData.package" name="package" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
-              <option value="">Selecciona un paquete</option>
-              <option value="basico">Básico (S/99)</option>
-              <option value="avanzado">Avanzado (S/129)</option>
-              <option value="premium">Premium (S/159)</option>
-            </select>
-          </div>
-          <div>
-            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mensaje (opcional)</label>
-            <textarea id="message" [(ngModel)]="formData.message" name="message" rows="4"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"></textarea>
-          </div>
-          <button type="submit"
-                  class="w-full bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2">
-            <span>Enviar Solicitud</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-            </svg>
-          </button>
-        </form>
+
+          <!-- Input del chat -->
+          @if (currentStep < chatSteps.length && !isTyping) {
+            <div class="border-t border-neutral-600/30 p-4">
+              <div class="flex space-x-3">
+                <input
+                  type="text"
+                  [(ngModel)]="currentInput"
+                  (keydown.enter)="handleUserInput()"
+                  placeholder="Escribe tu respuesta..."
+                  class="flex-1 bg-neutral-700/50 border border-neutral-600/50 rounded-xl px-4 py-3 text-white
+                     placeholder-neutral-400 focus:border-primary-500/50 focus:ring-1 focus:ring-primary-500/50
+                     transition-all duration-200 outline-none">
+
+                <button
+                  (click)="handleUserInput()"
+                  [disabled]="!currentInput.trim()"
+                  class="bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-500 hover:to-secondary-500
+                     disabled:from-neutral-600 disabled:to-neutral-700 disabled:cursor-not-allowed
+                     text-white px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center">
+                  <lucide-icon [img]="SendIcon" class="w-5 h-5"></lucide-icon>
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Botón de reiniciar chat -->
+          @if (currentStep >= chatSteps.length) {
+            <div class="border-t border-neutral-600/30 p-4">
+              <button
+                (click)="resetChat()"
+                class="w-full bg-gradient-to-r from-accent-600 to-accent-700 hover:from-accent-500 hover:to-accent-600
+                   text-white py-3 px-4 rounded-xl font-semibold transition-all duration-200
+                   flex items-center justify-center space-x-2">
+                <lucide-icon [img]="MessageCircleIcon" class="w-5 h-5"></lucide-icon>
+                <span>Nueva Consulta</span>
+              </button>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </div>
